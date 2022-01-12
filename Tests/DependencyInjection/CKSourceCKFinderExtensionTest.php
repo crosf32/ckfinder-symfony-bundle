@@ -12,12 +12,13 @@
 namespace CKSource\Bundle\CKFinderBundle\Tests\DependencyInjection;
 
 use CKSource\Bundle\CKFinderBundle\DependencyInjection\CKSourceCKFinderExtension;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 /**
  * CKSourceCKFinderExtension test.
  */
-class CKSourceCKFinderExtensionTest extends \PHPUnit_Framework_TestCase
+class CKSourceCKFinderExtensionTest extends TestCase
 {
     /**
      * @var ContainerBuilder
@@ -29,7 +30,7 @@ class CKSourceCKFinderExtensionTest extends \PHPUnit_Framework_TestCase
     /**
      * {@inheritdoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $ckfinderExtension = new CKSourceCKFinderExtension();
 
@@ -51,7 +52,7 @@ class CKSourceCKFinderExtensionTest extends \PHPUnit_Framework_TestCase
     /**
      * {@inheritdoc}
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         unset($this->container);
     }

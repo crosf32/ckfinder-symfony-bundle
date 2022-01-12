@@ -14,6 +14,7 @@ namespace CKSource\Bundle\CKFinderBundle\Tests\Form\Type;
 use CKSource\Bundle\CKFinderBundle\Form\Type\CKFinderFileChooserType;
 use Symfony\Component\Form\PreloadedExtension;
 use Symfony\Component\Form\Test\TypeTestCase;
+use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
 
 /**
  * CKFinderFileChooserType test.
@@ -29,11 +30,6 @@ class CKFinderFileChooserTypeTest extends TypeTestCase
         ), array()));
     }
 
-    public function testFileChooserInstantiation()
-    {
-        $this->factory->create(CKFinderFileChooserType::class);
-    }
-
     public function testDefaultOptions()
     {
         $form = $this->factory->create(CKFinderFileChooserType::class);
@@ -45,31 +41,25 @@ class CKFinderFileChooserTypeTest extends TypeTestCase
         $this->assertSame('ckf_filechooser_' . $view->vars['id'], $view->vars['button_id']);
     }
 
-    /**
-     * @expectedException \Symfony\Component\OptionsResolver\Exception\InvalidOptionsException
-     */
     public function testModeOptionExpectsModalOrPopup()
     {
+        $this->expectException(InvalidOptionsException::class);
         $this->factory->create(CKFinderFileChooserType::class, null, array(
             'mode' => 'foo'
         ));
     }
 
-    /**
-     * @expectedException \Symfony\Component\OptionsResolver\Exception\InvalidOptionsException
-     */
     public function testButtonTextOptionExpectsString()
     {
+        $this->expectException(InvalidOptionsException::class);
         $this->factory->create(CKFinderFileChooserType::class, null, array(
-            'button_text' => array()
+            'button_text' => []
         ));
     }
 
-    /**
-     * @expectedException \Symfony\Component\OptionsResolver\Exception\InvalidOptionsException
-     */
     public function testButtonAttrOptionExpectsArray()
     {
+        $this->expectException(InvalidOptionsException::class);
         $this->factory->create(CKFinderFileChooserType::class, null, array(
             'button_attr' => 'foo'
         ));
